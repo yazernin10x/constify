@@ -4,10 +4,9 @@ import functools
 from typing import Any, Callable
 
 
-def freezeparams(func: Callable[..., Any]):
-
+def freezeparams(func: Callable[..., Any]) -> Callable[..., Any]:
     @functools.wraps(func)
-    def wrapper(*args, **kwargs):
+    def wrapper(*args: tuple[Any], **kwargs: dict[str, Any]) -> Any:
         parameters = inspect.signature(func).parameters
         default_kwargs = {
             key: value
@@ -15,7 +14,7 @@ def freezeparams(func: Callable[..., Any]):
             if (value := param.default) != inspect.Parameter.empty
         }
 
-        args_to_kwargs = {}
+        args_to_kwargs: dict[str, Any] = {}
         if args:
             args = copy.deepcopy(args)
             bound_arguments = inspect.signature(func).bind(*args)
