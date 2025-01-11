@@ -1,3 +1,21 @@
+# Environments
+.venv/
+
 # Byte-compiled
 __pycache__/
 
+# Unit test / coverage reports
+.tox
+.htmlcov/
+.coverage
+.coverage.*
+
+# ruff
+.ruff_cache/
+
+# Static type checkers
+.mypy_cache
+
+# Distribution / packaging
+dist/
+*.egg-info/
