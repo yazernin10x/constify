@@ -7,8 +7,7 @@ __pycache__/
 # Unit test / coverage reports
 .tox
 .htmlcov/
-.coverage
-.coverage.*
+.coverage*
 
 # ruff
 .ruff_cache/
