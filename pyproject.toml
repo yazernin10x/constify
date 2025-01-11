@@ -1,0 +1,145 @@
+[build-system]
+requires = ["setuptools >= 64", "setuptools_scm[toml] >= 8"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "constify"
+# version = "0.1.0"
+dynamic = ["version"]
+authors = [{ name="YARO Ali", email="ali.yaro@hotmail.com" }]
+description = "Makes functions parameters immutable"
+readme = "README.md"
+requires-python = ">=3.9"
+keywords = [
+    "immutable",
+    "mutable",
+    "function integrity",
+    "decorator",
+    "default values",
+    "mutable arguments",
+    "predictable code",
+    "software reliability",
+]
+license = {text = "MIT"}
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13"
+]
+
+[project.urls]
+Repository = "https://github.com/yazernin10x/constify"
+"Issue tracker" = "https://github.com/yazernin10x/constify/issues"
+
+
+[project.optional-dependencies]
+dev = [
+    "pylint[spelling]",
+    "ruff",
+    "black",
+    "mypy"
+]
+
+test = [
+    "tox",
+    "coverage"
+]
+
+###### setuptools ######
+[tool.setuptools.package-data]
+"constify" = ["py.typed"]
+
+[tool.pylint]
+disable = [
+    "import-error",
+    "missing-module-docstring",
+    "missing-function-docstring",
+    "missing-class-docstring"
+]
+
+
+###### Mypy ######
+[tool.mypy]
+cache_dir = ".mypy_cache"
+strict = true
+pretty = true
+
+###### Converage ######
+[tool.coverage.run]
+omit = ["tests/*"]
+parallel = true
+
+[tool.coverage.html]
+directory = ".htmlcov"
+
+###### Tox ######
+[tool.tox]
+requires = ["tox >= 4.19"]
+env_list = [
+    "3.9",
+    "3.10",
+    "3.11",
+    "3.12",
+    "3.13",
+    "doctest",
+    "report",
+    "type",
+    "linter",
+    "style"
+]
+skip_missing_interpreters = true
+
+[tool.tox.env_run_base]
+description = "Run tests with unittest discover"
+package = "editable"
+deps = ["coverage[toml] >= 7.6.10"]
+commands = [["coverage", "run", "-m", "unittest"]]
+
+[tool.tox.env.doctest]
+description = "Run tests with doctest"
+package = "editable"
+commands = [["python", "-m", "doctest", "src/constify/_freezeparams.py"]]
+
+[tool.tox.env.report]
+description = "Run tests with unittest discover"
+package = "editable"
+deps = ["coverage[toml] >= 7.6.10"]
+commands = [
+    ["coverage", "combine"], 
+    ["coverage", "html"], 
+    ["coverage", "erase"]
+]
+
+[tool.tox.env.type]
+description = "Perform type annotation checking"
+package = "editable"
+deps = ["mypy >= 1.14.1"]
+commands = [["mypy", "src"], ["mypy", "tests"]]
+
+[tool.tox.env.linter]
+description = "run linters"
+package = "editable"
+deps = ["pylint >= 3.3.3", "ruff"]
+commands = [
+    ["pylint", "src"], 
+    ["pylint", "tests"],
+    ["ruff", "check", "src"],
+    ["ruff", "check", "tests"]
+]
+
+[tool.tox.env.style]
+description = "run style"
+package = "editable"
+# skip_install = true
+deps = ["black >= 24.10.0"]
+commands = [
+    ["black", { replace = "posargs", default = ["."], extend = true} ]
+]
