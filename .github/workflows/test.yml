@@ -34,11 +34,7 @@ jobs:
             - name: Upload to Coveralls
               uses: coverallsapp/github-action@v2
               with:
-<<<<<<< HEAD
                 flag-name: run-python-${{ join(matrix.*, '-') }}
-=======
-                flag-name: run${{ join(matrix.*, '-') }}
->>>>>>> 5e8e3a3ee30593fac3f2825313cfc2a572d4643c
                 parallel: true
     
     finish:
