@@ -28,7 +28,7 @@ jobs:
             - name: Install dependencies
               run: pip install -e .[test]
             - name: Run tests with coverage
-              run: coverage run -m unittest discover && ls -l
+              run: coverage run -m unittest discover && ls -a
             - name: Upload to Coveralls
               uses: coverallsapp/github-action@v2
               with:
