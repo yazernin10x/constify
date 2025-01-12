@@ -1,4 +1,4 @@
-name: Run Coverage and Upload to Coveralls
+name: Unit Tests
 
 on:
     push:
