@@ -1,14 +1,14 @@
 [![Python](https://img.shields.io/badge/Python-3.9%7C3.10%7C3.11%7C3.12%7C3.13-%233776AB?style=flat&logo=python&logoColor=%23FFD43B
 )](https://www.python.org/)
-[![License MIT](https://img.shields.io/badge/License-MIT-%234FC08D?style=flat)
-](https://choosealicense.com/licenses/mit/)
+[![License MIT](https://img.shields.io/badge/License-MIT-%234FC08D?style=flat)](https://choosealicense.com/licenses/mit/)
+[![Coverage Status](https://coveralls.io/repos/github/yazernin10x/constify/badge.svg?branch=main)](https://coveralls.io/github/yazernin10x/constify?branch=main)
+[![Unit Tests](https://github.com/yazernin10x/constify/actions/workflows/test.yml/badge.svg)](https://github.com/yazernin10x/constify/actions/workflows/test.yml)
 [![Static Badge](https://img.shields.io/badge/Setuptools-Packaged-%23FFD242?style=flat)](https://setuptools.pypa.io/en/latest/setuptools.html)
 [![Tox](https://img.shields.io/badge/Tox-Passing-%238ACA3E?style=flat)](https://tox.wiki/en/latest/config.html)
 [![Black](https://img.shields.io/badge/Black-Code%20style-black?style=flat)](https://github.com/psf/black)
 [![Linting: pylint](https://img.shields.io/badge/Pylint-Linting-yellowgreen)](https://github.com/pylint-dev/pylint)
 [![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
 [![Mypy](https://img.shields.io/badge/MyPy-Checked-%232A6ACB)](https://mypy-lang.org/)
-
 
 # Constify
 
