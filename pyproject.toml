@@ -4,7 +4,6 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "constify"
-# version = "0.1.0"
 dynamic = ["version"]
 authors = [{ name="YARO Ali", email="ali.yaro@hotmail.com" }]
 description = "Makes functions parameters immutable"
@@ -53,9 +52,11 @@ test = [
     "coverage"
 ]
 
-###### setuptools ######
 [tool.setuptools.package-data]
-"constify" = ["py.typed"]
+"src.constify" = ["py.typed"]
+
+[tool.setuptools_scm]
+local_scheme = "dirty-tag"
 
 [tool.pylint]
 disable = [
@@ -65,14 +66,11 @@ disable = [
     "missing-class-docstring"
 ]
 
-
-###### Mypy ######
 [tool.mypy]
 cache_dir = ".mypy_cache"
 strict = true
 pretty = true
 
-###### Converage ######
 [tool.coverage.run]
 omit = ["tests/*"]
 parallel = true
@@ -80,7 +78,6 @@ parallel = true
 [tool.coverage.html]
 directory = ".htmlcov"
 
-###### Tox ######
 [tool.tox]
 requires = ["tox >= 4.19"]
 env_list = [
@@ -138,7 +135,6 @@ commands = [
 [tool.tox.env.style]
 description = "run style"
 package = "editable"
-# skip_install = true
 deps = ["black >= 24.10.0"]
 commands = [
     ["black", { replace = "posargs", default = ["."], extend = true} ]
