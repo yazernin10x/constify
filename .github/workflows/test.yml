@@ -13,7 +13,7 @@ jobs:
             fail-fast: false
             matrix:
                 python-version: ["3.9", "3.10", "3.11", "3.12", "3.13"]
-        
+
         runs-on: ubuntu-latest
         steps:
             - name: Checkout code
@@ -28,11 +28,13 @@ jobs:
             - name: Install dependencies
               run: pip install -e .[test]
             - name: Run tests with coverage
-              run: coverage run -m unittest discover
+              run: |
+                    coverage run -m unittest discover
+                    coverage combine
             - name: Upload to Coveralls
               uses: coverallsapp/github-action@v2
               with:
-                flag-name: run-${{ join(matrix.*, '-') }}
+                flag-name: run-python-${{ join(matrix.*, '-') }}
                 parallel: true
     
     finish:
@@ -44,7 +46,3 @@ jobs:
               uses: coverallsapp/github-action@v2
               with:
                 parallel-finished: true
-
-
-              
-
