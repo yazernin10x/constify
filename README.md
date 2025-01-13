@@ -67,8 +67,9 @@ print(f"f(3, {x}) =>", f(3, x))  # [1, 2, 3]
 print(f"f(4, {x}) =>", f(4, x))  # [1, 2, 4]
 print("x =", x)  # [1, 2]
 ```
+**You can comment out the decorator and run the code again to see the difference.**
 
-Simple and effective!
+*Simple and effective!*
 
 ## Sources
 
