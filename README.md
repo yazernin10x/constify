@@ -2,7 +2,6 @@
 [![License MIT](https://img.shields.io/badge/License-MIT-%234FC08D?style=flat)](https://choosealicense.com/licenses/mit/)
 [![Coverage Status](https://coveralls.io/repos/github/yazernin10x/constify/badge.svg?branch=main)](https://coveralls.io/github/yazernin10x/constify?branch=main)
 [![Unit Tests](https://github.com/yazernin10x/constify/actions/workflows/test.yml/badge.svg)](https://github.com/yazernin10x/constify/actions/workflows/test.yml)
-[![Setuptools](https://img.shields.io/badge/Setuptools-Packaged-%23FFD242?style=flat)](https://setuptools.pypa.io/en/latest/setuptools.html)
 [![Tox](https://img.shields.io/badge/Tox-Passing-%238ACA3E?style=flat)](https://tox.wiki/en/latest/config.html)
 [![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
 [![Mypy](https://img.shields.io/badge/MyPy-Checked-%232A6ACB)](https://mypy-lang.org/)
@@ -50,18 +49,23 @@ pip install constify
 from constify import freezeparams
 
 @freezeparams
-def add_to(value, liste=[]):
-    liste.append(value)
-    return liste
+def f(a, L=[]):
+    L.append(a)
+    return L
 
-# Default value remains unchanged
-print(add_to(56))  # [56]
-print(add_to(value=98))  # [98]
+# Default value (list) remains unchanged
+print("f(1) =>", f(1))  # [1]
+print("f(2) =>", f(2))  # [2]
+print("f(3) =>", f(3))  # [3]
+
+print("-" * 25) # just a separator
 
 # Passed list remains intact
-my_list = [1, 2]
-print(add_to(3, my_list))  # [1, 2, 3]
-print(my_list)  # [1, 2]
+x = [1, 2]
+print("x =", x)  # [1, 2]
+print(f"f(3, {x}) =>", f(3, x))  # [1, 2, 3]
+print(f"f(4, {x}) =>", f(4, x))  # [1, 2, 4]
+print("x =", x)  # [1, 2]
 ```
 
 Simple and effective!
@@ -69,4 +73,3 @@ Simple and effective!
 ## Sources
 
 [1] https://docs.python.org/3.13/tutorial/controlflow.html#default-argument-values
-
