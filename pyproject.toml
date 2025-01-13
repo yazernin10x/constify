@@ -10,14 +10,11 @@ description = "Makes functions parameters immutable"
 readme = "README.md"
 requires-python = ">=3.9"
 keywords = [
-    "immutable",
     "mutable",
-    "function integrity",
+    "immutable",
     "decorator",
     "default values",
     "mutable arguments",
-    "predictable code",
-    "software reliability",
 ]
 license = {text = "MIT"}
 classifiers = [
@@ -38,12 +35,9 @@ classifiers = [
 Repository = "https://github.com/yazernin10x/constify"
 "Issue tracker" = "https://github.com/yazernin10x/constify/issues"
 
-
 [project.optional-dependencies]
 dev = [
-    "pylint[spelling]",
     "ruff",
-    "black",
     "mypy"
 ]
 
@@ -58,14 +52,6 @@ test = [
 [tool.setuptools_scm]
 local_scheme = "dirty-tag"
 
-[tool.pylint]
-disable = [
-    "import-error",
-    "missing-module-docstring",
-    "missing-function-docstring",
-    "missing-class-docstring"
-]
-
 [tool.mypy]
 cache_dir = ".mypy_cache"
 strict = true
@@ -73,69 +59,57 @@ pretty = true
 
 [tool.coverage.run]
 omit = ["tests/*"]
-parallel = true
 
 [tool.coverage.html]
 directory = ".htmlcov"
 
 [tool.tox]
-requires = ["tox >= 4.19"]
+requires = ["tox"]
 env_list = [
     "3.9",
     "3.10",
     "3.11",
     "3.12",
     "3.13",
-    "doctest",
     "report",
+    "doctest",
     "type",
     "linter",
-    "style"
 ]
 skip_missing_interpreters = true
 
 [tool.tox.env_run_base]
-description = "Run tests with unittest discover"
+description = "Run tests with unittest and coverage"
 package = "editable"
 deps = ["coverage[toml] >= 7.6.10"]
-commands = [["coverage", "run", "-m", "unittest"]]
-
-[tool.tox.env.doctest]
-description = "Run tests with doctest"
-package = "editable"
-commands = [["python", "-m", "doctest", "src/constify/_freezeparams.py"]]
+commands = [["coverage", "run", "-p", "-m", "unittest"]]
 
 [tool.tox.env.report]
-description = "Run tests with unittest discover"
+description = "Combine files and generate a report"
 package = "editable"
-deps = ["coverage[toml] >= 7.6.10"]
+deps = ["coverage[toml]"]
 commands = [
     ["coverage", "combine"], 
     ["coverage", "html"], 
     ["coverage", "erase"]
 ]
 
-[tool.tox.env.type]
-description = "Perform type annotation checking"
+[tool.tox.env.doctest]
+description = "Run tests with doctest"
 package = "editable"
-deps = ["mypy >= 1.14.1"]
-commands = [["mypy", "src"], ["mypy", "tests"]]
+commands = [["python", "-m", "doctest", "src/constify/_freezeparams.py"]]
+
+[tool.tox.env.type]
+description = "Run type annotation checking"
+package = "editable"
+deps = ["mypy"]
+commands = [["mypy", "src/", "tests/"]]
 
 [tool.tox.env.linter]
-description = "run linters"
+description = "Run linter et formater"
 package = "editable"
-deps = ["pylint >= 3.3.3", "ruff"]
+deps = [ "ruff"]
 commands = [
-    ["pylint", "src"], 
-    ["pylint", "tests"],
-    ["ruff", "check", "src"],
-    ["ruff", "check", "tests"]
-]
-
-[tool.tox.env.style]
-description = "run style"
-package = "editable"
-deps = ["black >= 24.10.0"]
-commands = [
-    ["black", { replace = "posargs", default = ["."], extend = true} ]
+    ["ruff", "check", "src/", "tests/"],
+    ["ruff", "format", "src/", "tests/"]
 ]
