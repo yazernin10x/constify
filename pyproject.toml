@@ -51,6 +51,7 @@ test = [
 
 [tool.setuptools_scm]
 local_scheme = "dirty-tag"
+tag_regex = "^v(?P<version>.*)$"
 
 [tool.mypy]
 cache_dir = ".mypy_cache"
